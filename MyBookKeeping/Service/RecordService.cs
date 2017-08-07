@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using MyBookKeeping.Models.ViewModels;
 
@@ -7,8 +6,6 @@ namespace MyBookKeeping.Service
 {
     public class RecordService
     {
-        private List<RecordViewModel> _list = new List<RecordViewModel>( );
-
         public RecordService( )
         {
         }
