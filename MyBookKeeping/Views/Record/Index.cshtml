@@ -1,0 +1,75 @@
+﻿@model MyBookKeeping.Models.ViewModels.RecordPagedViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMoney.cshtml";
+    var serialNumber = 1;
+}
+
+@using ( Html.BeginForm( "Index", "Record", FormMethod.Post, new { id = "Records" } ) )
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>@Html.DisplayNameFor( m => m.Records.FirstOrDefault( ).Category )</th>
+                    <th>@Html.DisplayNameFor( m => m.Records.FirstOrDefault( ).Date )</th>
+                    <th>@Html.DisplayNameFor( m => m.Records.FirstOrDefault( ).Amount )</th>
+                </tr>
+                @foreach ( var item in Model.Records )
+                {
+                    <tr>
+                        <td>@serialNumber</td>
+                        <td>@Html.DisplayFor( x => item.Category )</td>
+                        <td>@Html.DisplayFor( x => item.Date )</td>
+                        <td>@Html.DisplayFor( x => item.Amount )</td>
+                    </tr>
+
+                    serialNumber++;
+                }
+            </table>
+        </div>
+
+        <div class="pager">
+            @Html.Pager( Model.Records.PageSize, Model.Records.PageNumber, Model.Records.TotalItemCount )
+        </div>
+    </div>
+}
+@section Scripts {
+
+    @Scripts.Render( "~/bundles/jqueryval" )
+
+    <script>
+
+        $(function () {
+
+            // Fields
+            var _pageLinkers = $(".pager> a");
+
+            // Binding click event
+            _pageLinkers.each(function (i, item) {
+                var page = getParameterByName($(item).attr('href'), 'page')
+                $(item).attr('href', '#').click(function () { postPage(page); });
+            });
+
+        });
+
+        function postPage(page) {
+            var targetFormID = '#Records';
+            if ($(targetFormID).size() > 0) {
+                $('<input>')
+                    .attr({ type: 'hidden', id: 'page', name: 'page', value: page })
+                    .appendTo($(targetFormID));
+                $(targetFormID).submit();
+            }
+        }
+
+        function getParameterByName(url, name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(url);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+}
