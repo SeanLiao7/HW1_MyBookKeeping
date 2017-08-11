@@ -1,9 +1,10 @@
-﻿@model MyBookKeeping.Models.ViewModels.RecordPagedViewModel
+﻿@model IPagedList<MyBookKeeping.Models.ViewModels.RecordViewModel>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutMoney.cshtml";
     var serialNumber = 1;
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 
 @using ( Html.BeginForm( "Index", "Record", FormMethod.Post, new { id = "Records" } ) )
@@ -13,11 +14,11 @@
             <table class="table table-bordered table-hover">
                 <tr>
                     <th>#</th>
-                    <th>@Html.DisplayNameFor( m => m.Records.FirstOrDefault( ).Category )</th>
-                    <th>@Html.DisplayNameFor( m => m.Records.FirstOrDefault( ).Date )</th>
-                    <th>@Html.DisplayNameFor( m => m.Records.FirstOrDefault( ).Amount )</th>
+                    <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Category )</th>
+                    <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Date )</th>
+                    <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Amount )</th>
                 </tr>
-                @foreach ( var item in Model.Records )
+                @foreach ( var item in Model )
                 {
                     <tr>
                         <td>@serialNumber</td>
@@ -30,46 +31,16 @@
                 }
             </table>
         </div>
-
-        <div class="pager">
-            @Html.Pager( Model.Records.PageSize, Model.Records.PageNumber, Model.Records.TotalItemCount )
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.PagedListPager( Model, page => Url.Action( "Index", new { page } ),
+            PagedListRenderOptions.ClassicPlusFirstAndLast )
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pagination-sm">
+                共 @(Model.PageCount) 頁 顯示項目：@(Model.FirstItemOnPage) ~ @(Model.LastItemOnPage), 共 @(Model.TotalItemCount) 項
+            </div>
         </div>
     </div>
-}
-@section Scripts {
-
-    @Scripts.Render( "~/bundles/jqueryval" )
-
-    <script>
-
-        $(function () {
-
-            // Fields
-            var _pageLinkers = $(".pager> a");
-
-            // Binding click event
-            _pageLinkers.each(function (i, item) {
-                var page = getParameterByName($(item).attr('href'), 'page')
-                $(item).attr('href', '#').click(function () { postPage(page); });
-            });
-
-        });
-
-        function postPage(page) {
-            var targetFormID = '#Records';
-            if ($(targetFormID).size() > 0) {
-                $('<input>')
-                    .attr({ type: 'hidden', id: 'page', name: 'page', value: page })
-                    .appendTo($(targetFormID));
-                $(targetFormID).submit();
-            }
-        }
-
-        function getParameterByName(url, name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(url);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-    </script>
 }

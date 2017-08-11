@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using MvcPaging;
 using MyBookKeeping.Models.ViewModels;
 using MyBookKeeping.Service;
+using PagedList;
 
 namespace MyBookKeeping.Controllers
 {
@@ -10,27 +10,18 @@ namespace MyBookKeeping.Controllers
     {
         private int _pageSize = 10;
 
-        public ActionResult Index( )
+        public ActionResult Index( int page = 1 )
         {
-            var viewModel = new RecordPagedViewModel( );
-
-            var records = new RecordService( ).getAll( );
-            viewModel.Records = records
-                                .OrderBy( x => x.Date )
-                                .ToPagedList( viewModel.Page > 0 ? viewModel.Page - 1 : 0, _pageSize );
-
-            return View( viewModel );
+            page = page < 1 ? 1 : page;
+            var pagedList = getIPagedList( page );
+            return View( pagedList );
         }
 
-        [HttpPost]
-        public ActionResult Index( RecordPagedViewModel viewModel )
+        private IPagedList<RecordViewModel> getIPagedList( int page )
         {
             var records = new RecordService( ).getAll( );
-            viewModel.Records = records
-                                .OrderBy( x => x.Date )
-                                .ToPagedList( viewModel.Page > 0 ? viewModel.Page - 1 : 0, _pageSize );
-
-            return View( viewModel );
+            return records.OrderBy( x => x.Date )
+                          .ToPagedList( page, _pageSize );
         }
     }
 }
