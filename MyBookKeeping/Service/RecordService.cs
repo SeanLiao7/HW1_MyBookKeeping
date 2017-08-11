@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MyBookKeeping.Models.ViewModels;
 
@@ -10,10 +11,9 @@ namespace MyBookKeeping.Service
         {
         }
 
-        public IQueryable<RecordViewModel> getAll( )
+        public IEnumerable<RecordViewModel> getAll( )
         {
             return Enumerable.Range( 0, 100 )
-                .AsQueryable( )
                 .Select( x => new RecordViewModel
                 {
                     Amount = ( x + 1 ) * 20,
