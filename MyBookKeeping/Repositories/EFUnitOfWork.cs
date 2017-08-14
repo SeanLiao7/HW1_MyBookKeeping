@@ -5,7 +5,7 @@ namespace MyBookKeeping.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        public DbContext Context { get; } = new SkillTreeHomeworkEntities( );
+        public DbContext Context { get; } = new SkillTreeHomeworkEntites( );
 
         public void Dispose( ) => Context.Dispose( );
 
