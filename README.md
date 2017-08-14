@@ -1,2 +1,2 @@
-# HW1_MyBookKeeping
-MVC HW1
+# MyBookKeeping
+MVC MyBookKeeping
