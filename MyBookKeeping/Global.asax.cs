@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MyBookKeeping.App_Start;
 
 namespace MyBookKeeping
 {
@@ -12,10 +13,11 @@ namespace MyBookKeeping
     {
         protected void Application_Start( )
         {
+            AutoMapperConfig.configure( );
+
             AreaRegistration.RegisterAllAreas( );
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
-            BundleConfig.RegisterBundles( BundleTable.Bundles );
         }
     }
 }
