@@ -10,12 +10,10 @@ namespace MyBookKeeping.Service
     public class RecordService
     {
         private readonly IRepository<AccountBook> _accountBookRepository;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public RecordService( IUnitOfWork unitOfWork, IRepository<AccountBook> accountBookRepository )
+        public RecordService( IRepository<AccountBook> accountBookRepository )
         {
             _accountBookRepository = accountBookRepository;
-            _unitOfWork = unitOfWork;
         }
 
         public IEnumerable<RecordViewModel> getAll( )
