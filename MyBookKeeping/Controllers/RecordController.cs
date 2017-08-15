@@ -16,6 +16,7 @@ namespace MyBookKeeping.Controllers
             _recordService = recordService;
         }
 
+        [Route( "Record/{page:int?}" )]
         public ActionResult Index( int page = 1 )
         {
             page = page < 1 ? 1 : page;
