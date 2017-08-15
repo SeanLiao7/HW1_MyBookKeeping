@@ -178,13 +178,12 @@
     <Compile Include="Models\ViewModels\RecordViewModel.cs" />
     <Compile Include="Models\SkillTreeHomeworkEntites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DbContextFactory .cs" />
+    <Compile Include="Repositories\EFDbContextFactory .cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\IDbContextFactory.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Service\IRecordService.cs" />
     <Compile Include="Service\RecordService.cs" />
   </ItemGroup>
   <ItemGroup>
