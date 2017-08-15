@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using MyBookKeeping.Models.ViewModels;
-using MyBookKeeping.Repositories;
 using MyBookKeeping.Service;
 using PagedList;
 
@@ -10,12 +9,11 @@ namespace MyBookKeeping.Controllers
     public class RecordController : Controller
     {
         private readonly int _pageSize = 10;
-        private readonly RecordService _recordService;
+        private readonly IRecordService _recordService;
 
-        public RecordController( )
+        public RecordController( IRecordService recordService )
         {
-            var unitOfWork = new EFUnitOfWork( );
-            _recordService = new RecordService( unitOfWork );
+            _recordService = recordService;
         }
 
         public ActionResult Index( int page = 1 )

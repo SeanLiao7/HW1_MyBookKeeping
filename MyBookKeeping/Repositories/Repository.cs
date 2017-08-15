@@ -16,10 +16,6 @@ namespace MyBookKeeping.Repositories
             DbSet = unitOfWork.Context.Set<T>( );
         }
 
-        private Repository( )
-        {
-        }
-
         public void Commit( ) => UnitOfWork.Save( );
 
         public void Create( T entity ) => DbSet.Add( entity );
