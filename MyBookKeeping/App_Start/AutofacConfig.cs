@@ -14,7 +14,6 @@ namespace MyBookKeeping.App_Start
             var builder = new ContainerBuilder( );
             builder.RegisterControllers( Assembly.GetExecutingAssembly( ) );
 
-            builder.RegisterType<EFDbContextFactory>( ).AsImplementedInterfaces( ).InstancePerRequest( );
             builder.RegisterGeneric( typeof( Repository<> ) ).As( typeof( IRepository<> ) ).InstancePerRequest( );
             builder.RegisterType<EFUnitOfWork>( ).AsImplementedInterfaces( ).InstancePerRequest( );
             builder.RegisterType<RecordService>( );

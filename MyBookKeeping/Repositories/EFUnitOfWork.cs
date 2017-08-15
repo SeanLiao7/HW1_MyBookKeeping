@@ -5,13 +5,16 @@ namespace MyBookKeeping.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private readonly IDbContextFactory _dbContextFactory;
+        private DbContext _context;
 
-        public DbContext Context => _dbContextFactory.DbContext;
-
-        public EFUnitOfWork( IDbContextFactory dbContextFactory )
+        public DbContext Context
         {
-            _dbContextFactory = dbContextFactory;
+            get
+            {
+                if ( _context == null )
+                    _context = new SkillTreeHomeworkEntites( );
+                return _context;
+            }
         }
 
         public void Dispose( ) => Context.Dispose( );
