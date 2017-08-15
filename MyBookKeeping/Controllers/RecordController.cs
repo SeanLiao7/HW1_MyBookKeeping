@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 using MyBookKeeping.Models.ViewModels;
 using MyBookKeeping.Repositories;
 using MyBookKeeping.Service;
@@ -27,9 +28,10 @@ namespace MyBookKeeping.Controllers
 
         private IPagedList<RecordViewModel> getIPagedList( int page )
         {
-            var records = _recordService.getAll( );
-            return records.OrderBy( x => x.Date )
-                          .ToPagedList( page, _pageSize );
+            return _recordService.getAll( )
+                                 .OrderBy( x => x.Dateee )
+                                 .ProjectTo<RecordViewModel>( )
+                                 .ToPagedList( page, _pageSize );
         }
     }
 }

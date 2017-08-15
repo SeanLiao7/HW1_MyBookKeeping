@@ -11,7 +11,7 @@ namespace MyBookKeeping.AutoMapper
         public RecordViewModelMapToEntityProfile( )
         {
             CreateMap<AccountBook, RecordViewModel>( )
-                .ForMember( x => x.Amount, y => y.MapFrom( s => s.Amounttt ) )
+                .ForMember( x => x.Amount, y => y.MapFrom( s => ( decimal ) s.Amounttt ) )
                 .ForMember( x => x.Category, y => y.MapFrom( s => s.Categoryyy == 0 ? "收入" : "支出" ) )
                 .ForMember( x => x.Date, y => y.MapFrom( s => s.Dateee ) );
         }

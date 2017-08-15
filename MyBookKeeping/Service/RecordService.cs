@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using System.Linq;
 using MyBookKeeping.Models;
-using MyBookKeeping.Models.ViewModels;
 using MyBookKeeping.Repositories;
 
 namespace MyBookKeeping.Service
@@ -20,10 +17,9 @@ namespace MyBookKeeping.Service
         {
         }
 
-        public IEnumerable<RecordViewModel> getAll( )
+        public IQueryable<AccountBook> getAll( )
         {
-            return Mapper.Map<IQueryable<AccountBook>, IEnumerable<RecordViewModel>>
-                ( _accountBookRepository.LookupAll( ) );
+            return _accountBookRepository.LookupAll( );
         }
     }
 }
