@@ -6,6 +6,7 @@ namespace MyBookKeeping.Models
     using System.Linq;
 
     public partial class SkillTreeHomeworkEntites : DbContext
+
     {
         public virtual DbSet<AccountBook> AccountBook { get; set; }
 

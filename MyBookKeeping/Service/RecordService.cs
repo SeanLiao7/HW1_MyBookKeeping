@@ -7,7 +7,7 @@ using MyBookKeeping.Repositories;
 
 namespace MyBookKeeping.Service
 {
-    public class RecordService : IRecordService
+    public class RecordService
     {
         private readonly IRepository<AccountBook> _accountBookRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -21,7 +21,7 @@ namespace MyBookKeeping.Service
         public IEnumerable<RecordViewModel> getAll( )
         {
             return Mapper.Map<IQueryable<AccountBook>, IEnumerable<RecordViewModel>>
-                ( _accountBookRepository.LookupAll( ) );
+                ( _accountBookRepository.lookupAll( ) );
         }
     }
 }

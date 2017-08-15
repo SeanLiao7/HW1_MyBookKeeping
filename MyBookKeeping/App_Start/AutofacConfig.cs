@@ -1,10 +1,7 @@
-﻿using System.Configuration;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
-using MyBookKeeping.Controllers;
-using MyBookKeeping.Models;
 using MyBookKeeping.Repositories;
 using MyBookKeeping.Service;
 
@@ -17,16 +14,10 @@ namespace MyBookKeeping.App_Start
             var builder = new ContainerBuilder( );
             builder.RegisterControllers( Assembly.GetExecutingAssembly( ) );
 
-            var connectionString = ConfigurationManager.ConnectionStrings[ "SkillTreeHomeworkEntites" ].ConnectionString;
-
-            builder.RegisterType<DbContextFactory>( )
-                   .WithParameter( "connectionString", connectionString )
-                   .AsImplementedInterfaces( )
-                   .InstancePerRequest( );
-
-            builder.RegisterGeneric( typeof( Repository<> ) ).As( typeof( IRepository<> ) );
-            builder.RegisterType<EFUnitOfWork>( ).AsImplementedInterfaces( );
-            builder.RegisterType<RecordService>( ).AsImplementedInterfaces( );
+            builder.RegisterType<EFDbContextFactory>( ).AsImplementedInterfaces( ).InstancePerRequest( );
+            builder.RegisterGeneric( typeof( Repository<> ) ).As( typeof( IRepository<> ) ).InstancePerRequest( );
+            builder.RegisterType<EFUnitOfWork>( ).AsImplementedInterfaces( ).InstancePerRequest( );
+            builder.RegisterType<RecordService>( );
 
             var container = builder.Build( );
 

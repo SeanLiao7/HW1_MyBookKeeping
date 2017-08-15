@@ -16,6 +16,6 @@ namespace MyBookKeeping.Repositories
 
         public void Dispose( ) => Context.Dispose( );
 
-        public void Save( ) => Context.SaveChanges( );
+        public void save( ) => Context.SaveChanges( );
     }
 }

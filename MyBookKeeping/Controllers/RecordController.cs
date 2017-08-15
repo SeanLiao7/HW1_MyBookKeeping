@@ -9,9 +9,9 @@ namespace MyBookKeeping.Controllers
     public class RecordController : Controller
     {
         private readonly int _pageSize = 10;
-        private readonly IRecordService _recordService;
+        private readonly RecordService _recordService;
 
-        public RecordController( IRecordService recordService )
+        public RecordController( RecordService recordService )
         {
             _recordService = recordService;
         }

@@ -16,6 +16,6 @@ namespace MyBookKeeping.Repositories
         /// <summary>
         /// save change
         /// </summary>
-        void Save( );
+        void save( );
     }
 }

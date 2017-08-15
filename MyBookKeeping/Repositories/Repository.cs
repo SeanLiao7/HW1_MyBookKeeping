@@ -16,16 +16,16 @@ namespace MyBookKeeping.Repositories
             DbSet = unitOfWork.Context.Set<T>( );
         }
 
-        public void Commit( ) => UnitOfWork.Save( );
+        public void commit( ) => UnitOfWork.save( );
 
-        public void Create( T entity ) => DbSet.Add( entity );
+        public void create( T entity ) => DbSet.Add( entity );
 
-        public T GetSingle( Expression<Func<T, bool>> filter ) => DbSet.SingleOrDefault( filter );
+        public T getSingle( Expression<Func<T, bool>> filter ) => DbSet.SingleOrDefault( filter );
 
-        public IQueryable<T> LookupAll( ) => DbSet;
+        public IQueryable<T> lookupAll( ) => DbSet;
 
-        public IQueryable<T> Query( Expression<Func<T, bool>> filter ) => DbSet.Where( filter );
+        public IQueryable<T> query( Expression<Func<T, bool>> filter ) => DbSet.Where( filter );
 
-        public void Remove( T entity ) => DbSet.Remove( entity );
+        public void remove( T entity ) => DbSet.Remove( entity );
     }
 }

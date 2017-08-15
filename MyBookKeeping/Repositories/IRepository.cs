@@ -16,37 +16,37 @@ namespace MyBookKeeping.Repositories
         /// <summary>
         /// save change
         /// </summary>
-        void Commit( );
+        void commit( );
 
         /// <summary>
         /// 新增一個entity
         /// </summary>
         /// <param name="entity"></param>
-        void Create( T entity );
+        void create( T entity );
 
         /// <summary>
         /// 取得單一 entity
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        T GetSingle( Expression<Func<T, bool>> filter );
+        T getSingle( Expression<Func<T, bool>> filter );
 
         /// <summary>
         /// Lookups all.
         /// </summary>
         /// <returns>IQueryable&lt;T&gt;.</returns>
-        IQueryable<T> LookupAll( );
+        IQueryable<T> lookupAll( );
 
         /// <summary>
         /// 搜尋
         /// </summary>
         /// <returns></returns>
-        IQueryable<T> Query( Expression<Func<T, bool>> filter );
+        IQueryable<T> query( Expression<Func<T, bool>> filter );
 
         /// <summary>
         /// 刪除單一entity
         /// </summary>
         /// <param name="entity"></param>
-        void Remove( T entity );
+        void remove( T entity );
     }
 }
