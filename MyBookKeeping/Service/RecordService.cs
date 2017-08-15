@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using MyBookKeeping.Models.ViewModels;
-using MyBookKeeping.Models;
-using MyBookKeeping.Repositories;
 using AutoMapper;
+using MyBookKeeping.Models;
+using MyBookKeeping.Models.ViewModels;
+using MyBookKeeping.Repositories;
 
 namespace MyBookKeeping.Service
 {
     public class RecordService
     {
         private readonly IRepository<AccountBook> _accountBookRepository;
-        private readonly IUnitOfWork _unitOfWork;
 
         public RecordService( IUnitOfWork unitOfWork )
         {
-            _unitOfWork = unitOfWork;
             _accountBookRepository = new Repository<AccountBook>( unitOfWork );
         }
 
