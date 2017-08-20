@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
+using MyBookKeeping.Models;
 using MyBookKeeping.Models.ViewModels;
 using MyBookKeeping.Repositories;
 using MyBookKeeping.Service;
@@ -24,6 +25,22 @@ namespace MyBookKeeping.Controllers
             page = page < 1 ? 1 : page;
             var pagedList = getIPagedList( page );
             return View( pagedList );
+        }
+
+        [HttpPost]
+        public ActionResult NewPost( AccountBook input )
+        {
+            _recordService.createNewRecord( input );
+            _recordService.Save( );
+            return RedirectToAction( "RenderPosts" );
+        }
+
+        [ChildActionOnly]
+        public ActionResult RenderPosts( int page = 1 )
+        {
+            page = page < 1 ? 1 : page;
+            var pagedList = getIPagedList( page );
+            return PartialView( "_IndexPartial", pagedList );
         }
 
         private IPagedList<RecordViewModel> getIPagedList( int page )

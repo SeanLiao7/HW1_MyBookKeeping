@@ -17,9 +17,19 @@ namespace MyBookKeeping.Service
         {
         }
 
+        public void createNewRecord( AccountBook record )
+        {
+            _accountBookRepository.Create( record );
+        }
+
         public IQueryable<AccountBook> getAll( )
         {
             return _accountBookRepository.LookupAll( );
+        }
+
+        public void Save( )
+        {
+            _accountBookRepository.Commit( );
         }
     }
 }

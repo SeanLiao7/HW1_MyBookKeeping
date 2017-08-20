@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -168,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBook.cs" />
+    <Compile Include="Models\CategoryEnum.cs" />
     <Compile Include="Models\ViewModels\RecordViewModel.cs" />
     <Compile Include="Models\SkillTreeHomeworkEntites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -236,6 +238,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Record\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMoney.cshtml" />
+    <Content Include="Views\Record\_IndexPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
