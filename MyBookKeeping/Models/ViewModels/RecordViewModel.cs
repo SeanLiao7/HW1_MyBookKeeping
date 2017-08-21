@@ -10,7 +10,7 @@ namespace MyBookKeeping.Models.ViewModels
         public decimal Amount { get; set; }
 
         [Display( Name = "類別" )]
-        public string Category { get; set; }
+        public CategoryEnum Category { get; set; }
 
         [Display( Name = "日期" )]
         [DisplayFormat( DataFormatString = "{0:yyyy-MM-dd}" )]

@@ -22,12 +22,12 @@ namespace MyBookKeeping.Service
             _accountBookRepository.Create( record );
         }
 
-        public IQueryable<AccountBook> getAll( )
+        public IQueryable<AccountBook> getRecords( )
         {
             return _accountBookRepository.LookupAll( );
         }
 
-        public void Save( )
+        public void save( )
         {
             _accountBookRepository.Commit( );
         }
