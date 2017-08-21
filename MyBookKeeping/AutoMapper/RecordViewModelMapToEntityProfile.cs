@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyBookKeeping.Models;
+using MyBookKeeping.Models.DataPostModels;
 using MyBookKeeping.Models.ViewModels;
 
 namespace MyBookKeeping.AutoMapper

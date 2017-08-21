@@ -1,4 +1,4 @@
-﻿@model MyBookKeeping.Models.AccountRecord
+﻿@model MyBookKeeping.Models.DataPostModels.AccountRecord
 
 @{
     ViewBag.Title = "Index";
@@ -6,7 +6,10 @@
 }
 
 @section Scripts{
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
 
 <div class="container body-content">
@@ -17,11 +20,7 @@
                 @Html.LabelFor( m => m.Category, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">
                     @Html.EnumDropDownListFor( m => m.Category, "請選擇", new { @class = "form-control", id = "category" } )
-                    @*<select id="category" class="form-control">
-                            <option value="" selected>請選擇</option>
-                            <option>支出</option>
-                            <option>收入</option>
-                        </select>*@
+                    @Html.ValidationMessageFor( m => m.Category, "", new { @class = "text-danger" } )
                 </div>
             </div>
             <div class="form-group">
@@ -35,8 +34,10 @@
                        @class = "form-control",
                        id = "money",
                        placeholder = "金額",
+                       data_val_number = "需輸入數字"
                    }
                } )
+                    @Html.ValidationMessageFor( m => m.Amount, "", new { @class = "text-danger" } )
                 </div>
             </div>
             <div class="form-group">
@@ -49,15 +50,17 @@
                        type = "date",
                        @class = "form-control",
                        id = "date",
-                       placeholder = "日期"
+                       placeholder = "日期",
                    }
                } )
+                    @Html.ValidationMessageFor( m => m.Date, "", new { @class = "text-danger" } )
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor( m => m.Remark, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">
                     @Html.TextAreaFor( m => m.Remark, new { @class = "form-control", id = "description" } )
+                    @Html.ValidationMessageFor( m => m.Remark, "", new { @class = "text-danger" } )
                 </div>
             </div>
             <div class="form-group">
@@ -68,9 +71,7 @@
         }
     </div>
     <div id="records_block">
-        @{
-            Html.RenderAction( "RenderPosts", "Record" );
-        }
+        @Html.Action( "RenderPosts", "Record" )
     </div>
     <hr />
     <footer>

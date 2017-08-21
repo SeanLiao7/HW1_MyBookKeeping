@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MyBookKeeping.Models;
+using MyBookKeeping.Models.DataPostModels;
 using MyBookKeeping.Models.ViewModels;
 using MyBookKeeping.Repositories;
 using MyBookKeeping.Service;
@@ -23,17 +24,6 @@ namespace MyBookKeeping.Controllers
 
         public ActionResult Index( int? page )
         {
-            //var items = new List<SelectListItem>( );
-
-            //foreach ( var item in Enumerable.Range( 1, 10 ) )
-            //{
-            //    items.Add( new SelectListItem( )
-            //    {
-            //        Text = Catego
-            //        Value = item.ToString( )
-            //    } );
-            //}
-            //ViewData[ "dr" ] = items;
             return View( );
         }
 
@@ -46,7 +36,6 @@ namespace MyBookKeeping.Controllers
             return RedirectToAction( "Index" );
         }
 
-        [ChildActionOnly]
         public ActionResult RenderPosts( int? page )
         {
             page = page ?? 1;

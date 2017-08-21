@@ -165,13 +165,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBook.cs" />
-    <Compile Include="Models\AccountRecord.cs" />
     <Compile Include="Models\CategoryEnum.cs" />
+    <Compile Include="Models\DataPostModels\AccountRecord.cs" />
     <Compile Include="Models\ViewModels\RecordViewModel.cs" />
     <Compile Include="Models\SkillTreeHomeworkEntites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,6 +253,7 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
