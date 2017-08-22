@@ -1,7 +1,19 @@
-﻿@model IPagedList<MyBookKeeping.Models.ViewModels.RecordViewModel>
+﻿@using MyBookKeeping.Models
+@using MyBookKeeping.Models.ViewModels
+@model IPagedList<RecordViewModel>
 
 @{
     var serialNumber = 1;
+}
+
+@helper tableRawData( int serialNumber, RecordViewModel recordViewModel, string color )
+{
+    <tr style="color:@color">
+        <td>@serialNumber</td>
+        <td>@Html.DisplayFor( x => recordViewModel.Category )</td>
+        <td>@Html.DisplayFor( x => recordViewModel.Date )</td>
+        <td>@Html.DisplayFor( x => recordViewModel.Amount )</td>
+    </tr>
 }
 
 <div class="row">
@@ -15,13 +27,20 @@
             </tr>
             @foreach ( var item in Model )
             {
-                <tr>
-                    <td>@serialNumber</td>
-                    <td>@Html.DisplayFor( x => item.Category )</td>
-                    <td>@Html.DisplayFor( x => item.Date )</td>
-                    <td>@Html.DisplayFor( x => item.Amount )</td>
-                </tr>
+                string color;
+                switch ( item.Category )
+                {
+                    case CategoryEnum.支出:
+                        color = "red";
+                        break;
+                    case CategoryEnum.收入:
+                        color = "blue";
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException( );
+                }
 
+                @tableRawData( serialNumber, item, color )
                 serialNumber++;
             }
         </table>
