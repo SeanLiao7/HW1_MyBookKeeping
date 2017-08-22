@@ -32,7 +32,7 @@ namespace MyBookKeeping.Controllers
         {
             var accountbook = Mapper.Map<AccountBook>( input );
             _recordService.createNewRecord( accountbook );
-            //_recordService.save( );
+            _recordService.save( );
             return RedirectToAction( "Index" );
         }
 

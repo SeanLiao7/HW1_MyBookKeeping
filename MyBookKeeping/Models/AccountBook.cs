@@ -8,22 +8,19 @@ namespace MyBookKeeping.Models
     public partial class AccountBook
     {
         [Required]
-        [Display( Name = "金額" )]
         public int Amounttt { get; set; }
 
         [Required]
-        [Display( Name = "類別" )]
         public int Categoryyy { get; set; }
 
         [Required]
-        [Display( Name = "日期" )]
         public DateTime Dateee { get; set; }
 
+        [Required]
         public Guid Id { get; set; }
 
         [Required]
         [StringLength( 500 )]
-        [Display( Name = "備註" )]
         public string Remarkkk { get; set; }
     }
 }

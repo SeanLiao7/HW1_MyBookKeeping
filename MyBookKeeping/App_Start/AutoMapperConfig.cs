@@ -7,7 +7,7 @@ namespace MyBookKeeping.App_Start
     {
         public static void configure( )
         {
-            Mapper.Initialize( x => x.AddProfile<RecordViewModelMapToEntityProfile>( ) );
+            Mapper.Initialize( x => x.AddProfile<RecordMapToEntityProfile>( ) );
             Mapper.AssertConfigurationIsValid( );
         }
     }

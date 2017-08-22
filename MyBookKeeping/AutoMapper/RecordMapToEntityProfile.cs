@@ -1,15 +1,16 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using MyBookKeeping.Models;
 using MyBookKeeping.Models.DataPostModels;
 using MyBookKeeping.Models.ViewModels;
 
 namespace MyBookKeeping.AutoMapper
 {
-    public class RecordViewModelMapToEntityProfile : Profile
+    public class RecordMapToEntityProfile : Profile
     {
         public override string ProfileName => "RecordViewModelMapToEntity";
 
-        public RecordViewModelMapToEntityProfile( )
+        public RecordMapToEntityProfile( )
         {
             CreateMap<AccountBook, RecordViewModel>( )
                 .ForMember( x => x.Amount, y => y.MapFrom( s => ( decimal ) s.Amounttt ) )
@@ -21,7 +22,7 @@ namespace MyBookKeeping.AutoMapper
                 .ForMember( x => x.Categoryyy, y => y.MapFrom( s => ( int ) s.Category ) )
                 .ForMember( x => x.Dateee, y => y.MapFrom( s => s.Date ) )
                 .ForMember( x => x.Remarkkk, y => y.MapFrom( s => s.Remark ) )
-                .ForMember( x => x.Id, y => y.Ignore( ) );
+                .ForMember( x => x.Id, y => y.MapFrom( _ => Guid.NewGuid( ) ) );
         }
     }
 }
