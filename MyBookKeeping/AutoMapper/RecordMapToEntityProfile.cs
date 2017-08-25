@@ -22,7 +22,7 @@ namespace MyBookKeeping.AutoMapper
                 .ForMember( x => x.Categoryyy, y => y.MapFrom( s => ( int ) s.Category ) )
                 .ForMember( x => x.Dateee, y => y.MapFrom( s => s.Date ) )
                 .ForMember( x => x.Remarkkk, y => y.MapFrom( s => s.Remark ) )
-                .ForMember( x => x.Id, y => y.MapFrom( _ => Guid.NewGuid( ) ) );
+                .ForMember( x => x.Id, y => y.Ignore( ) );
         }
     }
 }

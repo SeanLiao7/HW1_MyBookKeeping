@@ -1,5 +1,3 @@
-using System.Web.Mvc;
-
 namespace MyBookKeeping.Models
 {
     using System;
@@ -9,19 +7,13 @@ namespace MyBookKeeping.Models
     [Table( "AccountBook" )]
     public partial class AccountBook
     {
-        [Required]
         public int Amounttt { get; set; }
-
-        [Required]
         public int Categoryyy { get; set; }
-
-        [Required]
         public DateTime Dateee { get; set; }
 
-        [Required]
+        [Key, DatabaseGenerated( DatabaseGeneratedOption.Identity )]
         public Guid Id { get; set; }
 
-        [Required]
         [StringLength( 500 )]
         public string Remarkkk { get; set; }
     }
