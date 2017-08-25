@@ -1,4 +1,5 @@
-﻿@using MyBookKeeping.Models
+﻿@using MyBookKeeping.Helper
+@using MyBookKeeping.Models
 @using MyBookKeeping.Models.ViewModels
 @model IPagedList<RecordViewModel>
 
@@ -6,11 +7,25 @@
     var serialNumber = 1;
 }
 
-@helper tableRawData( int serialNumber, RecordViewModel recordViewModel, string color )
+@helper tableRawData( int serialNumber, RecordViewModel recordViewModel )
 {
+string color;
+var enumValue = recordViewModel.Category;
+switch ( enumValue )
+{
+    case CategoryEnum.EXPEND:
+        color = "red";
+        break;
+    case CategoryEnum.INCOME:
+        color = "blue";
+        break;
+    default:
+        throw new ArgumentOutOfRangeException( );
+}
+
     <tr style="color:@color">
         <td>@serialNumber</td>
-        <td>@Html.DisplayFor( x => recordViewModel.Category )</td>
+        <td>@Html.showDisplayNameByEnumValue( enumValue )</td>
         <td>@Html.DisplayFor( x => recordViewModel.Date )</td>
         <td>@Html.DisplayFor( x => recordViewModel.Amount )</td>
     </tr>
@@ -27,20 +42,7 @@
             </tr>
             @foreach ( var item in Model )
             {
-                string color;
-                switch ( item.Category )
-                {
-                    case CategoryEnum.支出:
-                        color = "red";
-                        break;
-                    case CategoryEnum.收入:
-                        color = "blue";
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException( );
-                }
-
-                @tableRawData( serialNumber, item, color )
+                @tableRawData( serialNumber, item )
                 serialNumber++;
             }
         </table>

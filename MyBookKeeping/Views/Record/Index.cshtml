@@ -33,7 +33,7 @@
                        type = "text",
                        @class = "form-control",
                        id = "money",
-                       placeholder = "金額",
+                       placeholder = Html.DisplayNameFor( d => d.Amount ),
                        data_val_number = "需輸入數字"
                    }
                } )
@@ -50,7 +50,7 @@
                        type = "date",
                        @class = "form-control",
                        id = "date",
-                       placeholder = "日期",
+                       placeholder = Html.DisplayNameFor( d => d.Date )
                    }
                } )
                     @Html.ValidationMessageFor( m => m.Date, "", new { @class = "text-danger" } )

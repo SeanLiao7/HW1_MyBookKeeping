@@ -166,9 +166,11 @@
     <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\HelperExtensions.cs" />
     <Compile Include="Models\AccountBook.cs" />
     <Compile Include="Models\CategoryEnum.cs" />
     <Compile Include="Models\DataPostModels\AccountRecord.cs" />
