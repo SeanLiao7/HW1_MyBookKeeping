@@ -30,9 +30,13 @@ namespace MyBookKeeping.Controllers
         [HttpPost]
         public ActionResult NewPost( AccountRecord input )
         {
-            var accountbook = Mapper.Map<AccountBook>( input );
-            _recordService.createNewRecord( accountbook );
-            _recordService.save( );
+            if ( ModelState.IsValid )
+            {
+                var accountbook = Mapper.Map<AccountBook>( input );
+                _recordService.createNewRecord( accountbook );
+                _recordService.save( );
+            }
+
             return RedirectToAction( "Index" );
         }
 

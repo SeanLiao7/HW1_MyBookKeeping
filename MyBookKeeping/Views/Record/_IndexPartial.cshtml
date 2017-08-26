@@ -23,11 +23,14 @@ switch ( enumValue )
         throw new ArgumentOutOfRangeException( );
 }
 
-    <tr style="color:@color">
-        <td>@serialNumber</td>
-        <td>@Html.showDisplayNameByEnumValue( enumValue )</td>
-        <td>@Html.DisplayFor( x => recordViewModel.Date )</td>
-        <td>@Html.DisplayFor( x => recordViewModel.Amount )</td>
+    <tr style="color:@color;">
+        <td style="vertical-align: middle">@serialNumber</td>
+        <td style="vertical-align: middle">@Html.showDisplayNameByEnumValue( enumValue )</td>
+        <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Date )</td>
+        <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Amount )</td>
+        <td class="col-lg-1" style="vertical-align: middle">
+            <a href="@Url.Action("Index","Home",new { area= "" })" class="btn btn-default" type="button">Edit</a>
+        </td>
     </tr>
 }
 
