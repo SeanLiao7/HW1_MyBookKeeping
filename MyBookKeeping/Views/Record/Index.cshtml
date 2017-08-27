@@ -6,15 +6,15 @@
 }
 
 @section Scripts{
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 }
 
 <div class="container body-content">
-    <div class="well" id="form_block">
-        @using ( Ajax.BeginForm( "NewPost", "Record", new AjaxOptions { UpdateTargetId = "records_block" }, new { @class = "form-horizontal" } ) )
+    <div class="well form-horizontal" id="form_block">
+        @using ( Ajax.BeginForm( "AjaxPosts", new AjaxOptions { UpdateTargetId = "recordsblock", HttpMethod = "POST" } ) )
         {
             <div class="form-group">
                 @Html.LabelFor( m => m.Category, new { @class = "col-sm-2 control-label" } )
@@ -70,8 +70,8 @@
             </div>
         }
     </div>
-    <div id="records_block">
-        @Html.Action( "RenderPosts", "Record" )
+    <div id="recordsblock">
+        @Html.Action( "RenderParialView", "Record" )
     </div>
     <hr />
     <footer>

@@ -49,8 +49,8 @@ switch ( enumValue )
                 serialNumber++;
             }
         </table>
-        @Html.PagedListPager( Model, page => Url.Action( "Index", new { page } ),
-       PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions( ) { UpdateTargetId = "records_block" } ) )
+        @Html.PagedListPager( Model, page => Url.Action( "RenderAjaxPartialView", new { page } ),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions { UpdateTargetId = "recordsblock" } ) )
         共 @(Model.PageCount) 頁 顯示項目：@(Model.FirstItemOnPage) ~ @(Model.LastItemOnPage), 共 @(Model.TotalItemCount) 項
     </div>
 </div>
