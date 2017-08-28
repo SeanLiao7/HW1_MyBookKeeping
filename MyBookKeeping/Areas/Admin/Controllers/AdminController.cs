@@ -38,6 +38,8 @@ namespace MyBookKeeping.Areas.Admin.Controllers
             var record = _recordService.getRecordById( recordId );
             var accountRecord = Mapper.Map<AccountRecord>( record );
 
+            ViewBag.RecordId = recordId;
+
             return View( accountRecord );
         }
 

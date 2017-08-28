@@ -13,7 +13,7 @@
 
 <div class="container body-content">
     <div class="well form-horizontal" id="form_block">
-        @using ( Html.BeginForm( "Edit", "Admin", new { recordId = Model.RecordId } ) )
+        @using ( Html.BeginForm( "Edit", "Admin", new { recordId = ViewBag.RecordId } ) )
         {
             @Html.AntiForgeryToken( )
             <div class="form-group">

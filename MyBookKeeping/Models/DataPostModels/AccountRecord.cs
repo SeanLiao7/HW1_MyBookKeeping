@@ -26,8 +26,6 @@ namespace MyBookKeeping.Models.DataPostModels
         [DisplayFormat( DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true )]
         public DateTime Date { get; set; }
 
-        public Guid RecordId { get; set; }
-
         [StringLength( 100, ErrorMessage = "長度不可超過 100 字元" )]
         [Display( Name = "備註" )]
         public string Remark { get; set; }
