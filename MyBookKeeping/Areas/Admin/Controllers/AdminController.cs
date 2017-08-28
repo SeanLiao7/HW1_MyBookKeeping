@@ -1,89 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MyBookKeeping.Models;
+using MyBookKeeping.Models.DataPostModels;
+using MyBookKeeping.Repositories;
+using MyBookKeeping.Service;
 
 namespace MyBookKeeping.Areas.Admin.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin/Admin
-        public ActionResult Index()
+        private readonly RecordService _recordService;
+
+        public AdminController( )
         {
-            return View();
+            _recordService = new RecordService( new EFUnitOfWork( ) );
         }
 
-        // GET: Admin/Admin/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Admin/Admin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/Admin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit( Guid recordId, AccountRecord accountRecord )
         {
-            try
+            if ( ModelState.IsValid )
             {
-                // TODO: Add insert logic here
+                var updatedRecord = getUpdatedRecord( recordId, accountRecord );
+                _recordService.updateRecord( updatedRecord );
+                _recordService.save( );
 
-                return RedirectToAction("Index");
+                return RedirectToAction( "Index", "Record", new { area = "" } );
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction( "Index", new { recordId } );
         }
 
-        // GET: Admin/Admin/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Index( Guid recordId )
         {
-            return View();
+            var record = _recordService.getRecordById( recordId );
+            var accountRecord = Mapper.Map<AccountRecord>( record );
+
+            return View( accountRecord );
         }
 
-        // POST: Admin/Admin/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        private AccountBook getUpdatedRecord( Guid recordId, AccountRecord accountRecord )
         {
-            try
-            {
-                // TODO: Add update logic here
+            var updateRecord = _recordService.getRecordById( recordId );
+            updateRecord.Dateee = accountRecord.Date;
+            updateRecord.Amounttt = ( int ) accountRecord.Amount;
+            updateRecord.Categoryyy = ( int ) accountRecord.Category;
+            updateRecord.Remarkkk = accountRecord.Remark;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return updateRecord;
         }
     }
 }

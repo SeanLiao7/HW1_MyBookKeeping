@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -35,6 +36,12 @@ namespace MyBookKeeping.Controllers
                 _recordService.save( );
             }
             return RedirectToAction( "RenderAjaxPartialView" );
+        }
+
+        [Authorize( Roles = "Admin" )]
+        public ActionResult Edit( Guid recordId )
+        {
+            return RedirectToAction( "Index", "Admin", new { area = "Admin", recordId } );
         }
 
         [AllowAnonymous]

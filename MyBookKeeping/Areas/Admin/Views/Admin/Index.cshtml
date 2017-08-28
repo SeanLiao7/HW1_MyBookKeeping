@@ -1,8 +1,7 @@
 ﻿@model MyBookKeeping.Models.DataPostModels.AccountRecord
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutMoney.cshtml";
+    ViewBag.Title = "Edit";
 }
 
 @section Scripts{
@@ -14,8 +13,9 @@
 
 <div class="container body-content">
     <div class="well form-horizontal" id="form_block">
-        @using ( Ajax.BeginForm( new AjaxOptions { UpdateTargetId = "recordsblock", Url = Url.Action( "AjaxPosts" ), HttpMethod = "POST" } ) )
+        @using ( Html.BeginForm( "Edit", "Admin", new { recordId = Model.RecordId } ) )
         {
+            @Html.AntiForgeryToken( )
             <div class="form-group">
                 @Html.LabelFor( m => m.Category, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">
@@ -70,13 +70,4 @@
             </div>
         }
     </div>
-    <div id="recordsblock">
-        @Html.Action( "RenderParialView", "Record" )
-    </div>
-    <hr />
-    <footer>
-        <p>
-            &copy; 2017 - <a href="#">SkillTree</a>
-        </p>
-    </footer>
 </div>

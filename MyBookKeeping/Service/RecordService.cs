@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MyBookKeeping.Models;
 using MyBookKeeping.Repositories;
 
@@ -22,6 +23,11 @@ namespace MyBookKeeping.Service
             _accountBookRepository.Create( record );
         }
 
+        public AccountBook getRecordById( Guid recordId )
+        {
+            return _accountBookRepository.GetSingle( x => x.Id == recordId );
+        }
+
         public IQueryable<AccountBook> getRecords( )
         {
             return _accountBookRepository.LookupAll( );
@@ -30,6 +36,11 @@ namespace MyBookKeeping.Service
         public void save( )
         {
             _accountBookRepository.Commit( );
+        }
+
+        public void updateRecord( AccountBook record )
+        {
+            _accountBookRepository.Update( record );
         }
     }
 }

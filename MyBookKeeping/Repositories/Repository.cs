@@ -1,5 +1,6 @@
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -31,5 +32,7 @@ namespace MyBookKeeping.Repositories
         public IQueryable<T> Query( Expression<Func<T, bool>> filter ) => DbSet.Where( filter );
 
         public void Remove( T entity ) => DbSet.Remove( entity );
+
+        public void Update( T entity ) => UnitOfWork.Context.Entry( entity ).State = EntityState.Modified;
     }
 }

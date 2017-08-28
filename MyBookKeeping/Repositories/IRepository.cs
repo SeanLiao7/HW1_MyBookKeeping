@@ -48,5 +48,11 @@ namespace MyBookKeeping.Repositories
         /// </summary>
         /// <param name="entity"></param>
         void Remove( T entity );
+
+        /// <summary>
+        /// 更新單一entity
+        /// </summary>
+        /// <param name="entity"></param>
+        void Update( T entity );
     }
 }

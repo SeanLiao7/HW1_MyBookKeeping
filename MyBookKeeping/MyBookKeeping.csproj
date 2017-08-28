@@ -183,7 +183,6 @@
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Models\EditModel.cs" />
     <Compile Include="AutoMapper\RecordMapToEntityProfile.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -193,6 +192,10 @@
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
+    <Compile Include="Filters\Validation\BeforeDateAttribute.cs" />
+    <Compile Include="Filters\Validation\PostiveNumberAttribute.cs" />
+    <Compile Include="Filters\Validation\RemoteDoublePlusAttribute.cs" />
+    <Compile Include="Filters\Validation\RemotePlusAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,6 +242,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -291,7 +296,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Admin\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
