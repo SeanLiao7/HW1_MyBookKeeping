@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper.Configuration.Conventions;
 
 namespace MyBookKeeping
 {
@@ -12,7 +13,8 @@ namespace MyBookKeeping
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Record", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Record", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[ ] { "MyBookKeeping.Controllers" }
             );
         }
     }

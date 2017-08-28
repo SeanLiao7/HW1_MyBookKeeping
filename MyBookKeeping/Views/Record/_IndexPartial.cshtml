@@ -29,7 +29,7 @@ switch ( enumValue )
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Date )</td>
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Amount )</td>
         <td class="col-lg-1" style="vertical-align: middle">
-            <a href="@Url.Action("Index","Home",new { area= "" })" class="btn btn-default" type="button">Edit</a>
+            <a href="@Url.Action( "Index", "Home", new { area = "", id = recordViewModel.Date } )" class="btn btn-default" type="button">Edit</a>
         </td>
     </tr>
 }

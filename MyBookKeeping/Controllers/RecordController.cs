@@ -12,6 +12,7 @@ using PagedList;
 
 namespace MyBookKeeping.Controllers
 {
+    [Authorize]
     public class RecordController : Controller
     {
         private readonly int _pageSize = 10;
@@ -24,6 +25,7 @@ namespace MyBookKeeping.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult AjaxPosts( AccountRecord input )
         {
             if ( ModelState.IsValid )
@@ -35,12 +37,14 @@ namespace MyBookKeeping.Controllers
             return RedirectToAction( "RenderAjaxPartialView" );
         }
 
+        [AllowAnonymous]
         public ActionResult Index( int? page )
         {
             return View( );
         }
 
         [AjaxOnly]
+        [AllowAnonymous]
         public ActionResult RenderAjaxPartialView( int? page )
         {
             page = page ?? 1;
@@ -49,6 +53,7 @@ namespace MyBookKeeping.Controllers
         }
 
         [ChildActionOnly]
+        [AllowAnonymous]
         public ActionResult RenderParialView( )
         {
             const int firstPage = 1;

@@ -1,0 +1,51 @@
+﻿@model MyBookKeeping.Models.LoginModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMoney.cshtml";
+}
+
+<div class="container body-content">
+    <div class="well form-horizontal" id="form_block">
+        @using ( Html.BeginForm( ) )
+        {
+            <div class="form-group">
+                @Html.LabelFor( m => m.Account, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.Account, new
+               {
+                   htmlAttributes = new
+                   {
+                       type = "text",
+                       @class = "form-control",
+                       id = "username",
+                       placeholder = Html.DisplayNameFor( d => d.Account )
+                   }
+               } )
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor( m => m.PassWord, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.PassWord, new
+               {
+                   htmlAttributes = new
+                   {
+                       type = "password",
+                       @class = "form-control",
+                       id = "username",
+                       placeholder = Html.DisplayNameFor( d => d.PassWord )
+                   }
+               } )
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <button class="btn btn-default">登入</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
