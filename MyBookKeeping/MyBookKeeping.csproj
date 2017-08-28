@@ -191,7 +191,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Filters\AjaxOnlyAttribute.cs" />
+    <Compile Include="Filters\Action\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\Validation\BeforeDateAttribute.cs" />
     <Compile Include="Filters\Validation\PostiveNumberAttribute.cs" />
     <Compile Include="Filters\Validation\RemoteDoublePlusAttribute.cs" />
