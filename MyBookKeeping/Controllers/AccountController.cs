@@ -6,7 +6,6 @@ using MyBookKeeping.Models;
 
 namespace MyBookKeeping.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         /// <summary>

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MyBookKeeping.Filters;
+using MyBookKeeping.Filters.Authorize;
 using MyBookKeeping.Models;
 using MyBookKeeping.Models.DataPostModels;
 using MyBookKeeping.Models.ViewModels;
@@ -13,7 +14,6 @@ using PagedList;
 
 namespace MyBookKeeping.Controllers
 {
-    [Authorize]
     public class RecordController : Controller
     {
         private readonly int _pageSize = 10;
@@ -26,7 +26,7 @@ namespace MyBookKeeping.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [AjaxAuthorize( Roles = "Admin" )]
         [ValidateAntiForgeryToken]
         public ActionResult AjaxPosts( AccountRecord input )
         {

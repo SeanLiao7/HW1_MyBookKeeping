@@ -28,7 +28,7 @@ switch ( enumValue )
         <td style="vertical-align: middle">@Html.showDisplayNameByEnumValue( enumValue )</td>
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Date )</td>
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Amount )</td>
-        <td class="col-lg-1" style="vertical-align: middle">
+        <td class="col-sm-1" style="vertical-align: middle">
             <a href="@Url.Action( "Edit", "Record", new { recordViewModel.RecordId } )" class="btn btn-default" type="button">編輯</a>
         </td>
     </tr>

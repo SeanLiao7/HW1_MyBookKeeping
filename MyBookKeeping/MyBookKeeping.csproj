@@ -194,6 +194,8 @@
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Filters\Action\AjaxOnlyAttribute.cs" />
+    <Compile Include="Filters\Authorize\AjaxAuthorizeAttribute .cs" />
+    <Compile Include="Filters\Authorize\AuthorizePlusAttribute.cs" />
     <Compile Include="Filters\Validation\BeforeCurrentDateAttribute.cs" />
     <Compile Include="Filters\Validation\PositiveNumberAttribute.cs" />
     <Compile Include="Filters\Validation\RemoteDoublePlusAttribute.cs" />
@@ -251,6 +253,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jQuery.Ajax.Authorize.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
