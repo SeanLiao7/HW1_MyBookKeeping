@@ -8,8 +8,7 @@ namespace MyBookKeeping.Models.DataPostModels
     public class AccountRecord
     {
         [Required( ErrorMessage = "金額是必填項目" )]
-        [RemotePlus( "AmountValidate", "Validate", "", ErrorMessage = "請輸入正整數 1 ~ 2147483647" )]
-        [PostiveNumber]
+        [PositiveNumber( ErrorMessage = "請輸入正整數 1 ~ 2147483647" )]
         [Display( Name = "金額" )]
         [DisplayFormat( DataFormatString = "{0:N0}" )]
         [DataType( DataType.Text )]
@@ -22,7 +21,7 @@ namespace MyBookKeeping.Models.DataPostModels
         [Required( ErrorMessage = "日期是必選項目" )]
         [Display( Name = "日期" )]
         [RemotePlus( "DateValidate", "Validate", "", ErrorMessage = "請選擇今日（含）以前的日期" )]
-        [BeforeDate]
+        [BeforeCurrentDate( ErrorMessage = "請選擇今日（含）以前的日期" )]
         [DisplayFormat( DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true )]
         public DateTime Date { get; set; }
 

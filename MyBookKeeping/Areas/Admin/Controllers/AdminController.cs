@@ -30,15 +30,16 @@ namespace MyBookKeeping.Areas.Admin.Controllers
                 return RedirectToAction( "Index", "Record", new { area = "" } );
             }
 
-            return RedirectToAction( "Index", new { recordId } );
+            return RedirectToAction( "Edit", new { recordId } );
         }
 
-        public ActionResult Index( Guid recordId )
+        public ActionResult Edit( Guid recordId )
         {
             var record = _recordService.getRecordById( recordId );
             var accountRecord = Mapper.Map<AccountRecord>( record );
 
             ViewBag.RecordId = recordId;
+            ViewBag.ReturnUrl = Request.UrlReferrer;
 
             return View( accountRecord );
         }

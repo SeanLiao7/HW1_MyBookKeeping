@@ -27,6 +27,7 @@ namespace MyBookKeeping.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult AjaxPosts( AccountRecord input )
         {
             if ( ModelState.IsValid )
@@ -35,13 +36,14 @@ namespace MyBookKeeping.Controllers
                 _recordService.createNewRecord( accountbook );
                 _recordService.save( );
             }
+
             return RedirectToAction( "RenderAjaxPartialView" );
         }
 
         [Authorize( Roles = "Admin" )]
         public ActionResult Edit( Guid recordId )
         {
-            return RedirectToAction( "Index", "Admin", new { area = "Admin", recordId } );
+            return RedirectToAction( "Edit", "Admin", new { area = "Admin", recordId } );
         }
 
         [AllowAnonymous]

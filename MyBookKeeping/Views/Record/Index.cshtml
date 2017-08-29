@@ -10,12 +10,14 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jQuery.Validate.Customplugin.js"></script>
 }
 
 <div class="container body-content">
     <div class="well form-horizontal" id="form_block">
         @using ( Ajax.BeginForm( new AjaxOptions { UpdateTargetId = "recordsblock", Url = Url.Action( "AjaxPosts" ), HttpMethod = "POST" } ) )
         {
+            @Html.AntiForgeryToken( )
             <div class="form-group">
                 @Html.LabelFor( m => m.Category, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">

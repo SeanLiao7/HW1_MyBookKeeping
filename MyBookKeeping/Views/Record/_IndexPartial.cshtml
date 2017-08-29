@@ -29,7 +29,7 @@ switch ( enumValue )
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Date )</td>
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Amount )</td>
         <td class="col-lg-1" style="vertical-align: middle">
-            <a href="@Url.Action( "Edit", "Record", new { recordViewModel.RecordId } )" class="btn btn-default" type="button">Edit</a>
+            <a href="@Url.Action( "Edit", "Record", new { recordViewModel.RecordId } )" class="btn btn-default" type="button">編輯</a>
         </td>
     </tr>
 }
@@ -42,6 +42,7 @@ switch ( enumValue )
                 <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Category )</th>
                 <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Date )</th>
                 <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Amount )</th>
+                <th></th>
             </tr>
             @foreach ( var item in Model )
             {
