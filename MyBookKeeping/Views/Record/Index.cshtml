@@ -12,6 +12,15 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jQuery.Validate.Customplugin.js"></script>
     <script src="~/Scripts/jQuery.Ajax.Authorize.js"></script>
+
+    <script>
+        function ValidateNumber(e, pnumber) {
+            if (!/^\d+$/.test(pnumber)) {
+                e.value = /^\d+/.exec(e.value);
+            }
+            return false;
+        }
+    </script>
 }
 
 <div class="container body-content">
@@ -35,9 +44,11 @@
                    {
                        type = "number",
                        @class = "form-control",
-                       id = "money",
+                       id = "txtboxToFilter",
                        placeholder = Html.DisplayNameFor( d => d.Amount ),
-                       data_val_number = "需輸入數字"
+                       data_val_number = "需輸入數字",
+                       style = "ime-mode:disabled",
+                       onkeyup = "return ValidateNumber(this,value)"
                    }
                } )
                     @Html.ValidationMessageFor( m => m.Amount, "", new { @class = "text-danger" } )
