@@ -20,7 +20,7 @@ namespace MyBookKeeping.Models.DataPostModels
 
         [Required( ErrorMessage = "日期是必選項目" )]
         [Display( Name = "日期" )]
-        [RemotePlus( "DateValidate", "Validate", "", ErrorMessage = "請選擇今日（含）以前的日期" )]
+        [RemoteDoublePlus( "DateValidate", "Validate", "", ErrorMessage = "請選擇今日（含）以前的日期" )]
         [BeforeCurrentDate( ErrorMessage = "請選擇今日（含）以前的日期" )]
         [DisplayFormat( DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true )]
         public DateTime Date { get; set; }

@@ -33,7 +33,7 @@ namespace ValidateSample.Filters.Validation
 
         protected override ValidationResult IsValid( object value, ValidationContext validationContext )
         {
-            var additionalFields = this.AdditionalFields.Split( ',' );
+            var additionalFields = this.AdditionalFields.Split( new[ ] { ',' }, StringSplitOptions.RemoveEmptyEntries );
             var propValues = new List<object> { value };
 
             foreach ( var additionalField in additionalFields )
@@ -43,10 +43,6 @@ namespace ValidateSample.Filters.Validation
                 {
                     var propValue = prop.GetValue( validationContext.ObjectInstance, null );
                     propValues.Add( propValue );
-                }
-                else
-                {
-                    propValues.Add( null );
                 }
             }
 
