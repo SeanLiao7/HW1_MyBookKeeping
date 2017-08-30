@@ -20,6 +20,7 @@ namespace MyBookKeeping.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login( LoginModel loginModel )
         {
             // 登入的密碼（以 SHA1 加密）
@@ -48,7 +49,8 @@ namespace MyBookKeeping.Controllers
                 return RedirectToAction( "Index", "Record" );
             }
 
-            TempData[ "Error" ] = "您輸入的帳號不存在或者密碼錯誤!";
+            ModelState.AddModelError( "password", "您輸入的帳號不存在或者密碼錯誤!" );
+
             return View( );
         }
 
