@@ -30,7 +30,7 @@ namespace MyBookKeeping.Areas.Admin.Controllers
                 return RedirectToAction( "Index", "Record", new { area = "" } );
             }
 
-            return RedirectToAction( "Edit", new { recordId } );
+            return View( accountRecord );
         }
 
         public ActionResult Edit( Guid recordId )
