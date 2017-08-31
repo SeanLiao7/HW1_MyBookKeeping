@@ -13,12 +13,23 @@
     <script src="~/Scripts/jQuery.Validate.Customplugin.js"></script>
     <script src="~/Scripts/jQuery.Ajax.Authorize.js"></script>
 
-    <script>
+    <script type="text/javascript">
         function ValidateNumber(e, pnumber) {
             if (!/^\d+$/.test(pnumber)) {
                 e.value = /^\d+/.exec(e.value);
             }
             return false;
+        }
+
+        function OnKeyDown(event) {
+            if (event.keyCode === 13) {
+                event.keyCode = 9;
+            }
+        }
+
+        function OnKeyPress(event) {
+            if ((event.keyCode < 48 || event.keyCode > 57))
+                event.returnValue = false;
         }
     </script>
 }
@@ -48,7 +59,11 @@
                        placeholder = Html.DisplayNameFor( d => d.Amount ),
                        data_val_number = "需輸入數字",
                        style = "ime-mode:disabled",
-                       onkeyup = "return ValidateNumber(this,value)"
+                       min = 1,
+                       max = int.MaxValue,
+                       onkeyup = "return ValidateNumber(this,value)",
+                       onkeydown = "return OnKeyDown(event)",
+                       onkeypress = "return OnKeyPress(event)"
                    }
                } )
                     @Html.ValidationMessageFor( m => m.Amount, "", new { @class = "text-danger" } )

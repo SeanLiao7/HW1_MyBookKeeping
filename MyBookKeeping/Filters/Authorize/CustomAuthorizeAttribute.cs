@@ -2,7 +2,7 @@
 
 namespace MyBookKeeping.Filters.Authorize
 {
-    public sealed class CustomAuthorize : AuthorizeAttribute
+    public sealed class CustomAuthorizeAttribute : AuthorizeAttribute
     {
         public string ActionName { get; set; }
         public string Area { get; set; }
