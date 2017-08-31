@@ -55,12 +55,11 @@
                    {
                        type = "number",
                        @class = "form-control",
-                       id = "txtboxToFilter",
+                       id = "money",
                        placeholder = Html.DisplayNameFor( d => d.Amount ),
                        data_val_number = "需輸入數字",
                        style = "ime-mode:disabled",
                        min = 1,
-                       max = int.MaxValue,
                        onkeyup = "return ValidateNumber(this,value)",
                        onkeydown = "return OnKeyDown(event)",
                        onkeypress = "return OnKeyPress(event)"
