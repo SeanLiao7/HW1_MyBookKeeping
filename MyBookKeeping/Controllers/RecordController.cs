@@ -40,7 +40,7 @@ namespace MyBookKeeping.Controllers
             return RedirectToAction( "RenderAjaxPartialView" );
         }
 
-        [Authorize( Roles = "Admin" )]
+        [CustomAuthorize( Roles = "Admin", ActionName = "Index", ControllerName = "Record", Area = "" )]
         public ActionResult Edit( Guid recordId )
         {
             return RedirectToAction( "Edit", "Admin", new { area = "Admin", recordId } );

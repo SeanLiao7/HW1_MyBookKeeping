@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ValidateSample.Filters.Validation
 {
-    public class RemoteDoublePlusAttribute : RemoteAttribute
+    public sealed class RemoteDoublePlusAttribute : RemoteAttribute
     {
         private string _action { get; set; }
         private string _controller { get; set; }

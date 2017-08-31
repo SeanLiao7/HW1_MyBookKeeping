@@ -2,7 +2,7 @@
 
 namespace MyBookKeeping.Filters
 {
-    public class AjaxOnlyAttribute : ActionFilterAttribute
+    public sealed class AjaxOnlyAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting( ActionExecutingContext filterContext )
         {

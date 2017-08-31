@@ -2,7 +2,7 @@
 
 namespace MyBookKeeping.Filters.Authorize
 {
-    public class AuthorizePlusAttribute : AuthorizeAttribute
+    public sealed class AuthorizePlusAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization( AuthorizationContext filterContext )
         {

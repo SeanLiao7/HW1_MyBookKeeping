@@ -196,6 +196,7 @@
     <Compile Include="Filters\Action\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\Authorize\AjaxAuthorizeAttribute .cs" />
     <Compile Include="Filters\Authorize\AuthorizePlusAttribute.cs" />
+    <Compile Include="Filters\Authorize\CustomAuthorize.cs" />
     <Compile Include="Filters\Validation\BeforeCurrentDateAttribute.cs" />
     <Compile Include="Filters\Validation\PositiveNumberAttribute.cs" />
     <Compile Include="Filters\Validation\RemoteDoublePlusAttribute.cs" />

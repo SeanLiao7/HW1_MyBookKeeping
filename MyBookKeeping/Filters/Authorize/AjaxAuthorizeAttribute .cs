@@ -2,7 +2,7 @@
 
 namespace MyBookKeeping.Filters.Authorize
 {
-    public class AjaxAuthorizeAttribute : AuthorizeAttribute
+    public sealed class AjaxAuthorizeAttribute : AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest( AuthorizationContext context )
         {
