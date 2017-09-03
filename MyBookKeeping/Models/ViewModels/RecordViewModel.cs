@@ -14,10 +14,12 @@ namespace MyBookKeeping.Models.ViewModels
         public CategoryEnum Category { get; set; }
 
         [Display( Name = "日期" )]
-        [DisplayFormat( DataFormatString = "{0:yyyy-MM-dd}" )]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [HiddenInput( DisplayValue = false )]
         public Guid RecordId { get; set; }
+
+        [Display( Name = "備註" )]
+        public string Remark { get; set; }
     }
 }

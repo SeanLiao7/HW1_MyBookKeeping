@@ -8,6 +8,7 @@ using MyBookKeeping.Service;
 
 namespace MyBookKeeping.Areas.Admin.Controllers
 {
+    [Authorize( Roles = "Admin" )]
     public class AdminController : Controller
     {
         private readonly RecordService _recordService;

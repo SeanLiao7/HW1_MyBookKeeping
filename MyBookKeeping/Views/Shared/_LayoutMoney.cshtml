@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的記帳本</title>
     <link href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/pickadate/themes/classic.date.css" rel="stylesheet" />
+    <link href="~/Scripts/pickadate/themes/classic.css" rel="stylesheet" />
+    <link href="~/Scripts/pickadate/themes/classic.time.css" rel="stylesheet" />
+    <link href=@Url.Action( "Index", "Feeds", new { area = "" } ) rel="alternate" type="application/rss+xml" />
     @RenderSection( "head", required: false )
 </head>
 <body>
@@ -17,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">我的記帳本</a>
+                <a class="navbar-brand">我的記帳本</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -30,9 +34,7 @@
         </div>
     </div>
     <br /><br /><br />
-
     @RenderBody( )
-    <script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
     @RenderSection( "scripts", required: false )
 </body>
 </html>

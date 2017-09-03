@@ -40,6 +40,15 @@ namespace MyBookKeeping.Controllers
             return RedirectToAction( "RenderAjaxPartialView" );
         }
 
+        [AllowAnonymous]
+        public ActionResult Detail( Guid recordId )
+        {
+            var record = _recordService.getRecordById( recordId );
+            var viewModel = Mapper.Map<RecordViewModel>( record );
+
+            return View( viewModel );
+        }
+
         [CustomAuthorize( Roles = "Admin", ActionName = "Index", ControllerName = "Record", Area = "" )]
         public ActionResult Edit( Guid recordId )
         {

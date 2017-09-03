@@ -1,0 +1,38 @@
+﻿@model MyBookKeeping.Models.ViewModels.RecordViewModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="container body-content">
+    <dl class="dl-horizontal well">
+        <dt>
+            @Html.DisplayNameFor( m => m.Category )
+        </dt>
+
+        <dd>
+            @Html.showDisplayNameByEnumValue( Model.Category )
+        </dd>
+        <dt>
+            @Html.DisplayNameFor( m => m.Amount )
+        </dt>
+
+        <dd>
+            @Html.DisplayFor( m => m.Amount )
+        </dd>
+        <dt>
+            @Html.DisplayNameFor( m => m.Date )
+        </dt>
+
+        <dd>
+            @Html.DisplayFor( m => m.Date )
+        </dd>
+        <dt>
+            @Html.DisplayNameFor( m => m.Remark )
+        </dt>
+
+        <dd>
+            @Html.DisplayFor( m => m.Remark )
+        </dd>
+    </dl>
+</div>

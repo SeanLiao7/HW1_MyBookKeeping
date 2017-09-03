@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutMoney.cshtml";
 }
 
 @section Scripts{
@@ -12,30 +11,39 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jQuery.Validate.Customplugin.js"></script>
     <script src="~/Scripts/jQuery.Ajax.Authorize.js"></script>
-
-    <script type="text/javascript">
-        jQuery.extend(jQuery.validator.messages, {
-            max: jQuery.validator.format("輸入值不得大於 {0}."),
-            min: jQuery.validator.format("輸入值不得小於 {0}.")
+    <script src="~/Scripts/pickadate/picker.js"></script>
+    <script src="~/Scripts/pickadate/picker.date.js"></script>
+    <script>
+        $(function () {
+            $("[data-datepicker]").pickadate({
+                max: true,
+                format: "你選擇 : yyyy-mm-dd"
+            });
         });
+
+        jQuery.extend(jQuery.validator.messages,
+            {
+                max: jQuery.validator.format("輸入值不得大於 {0}."),
+                min: jQuery.validator.format("輸入值不得小於 {0}.")
+            });
 
         function ValidateNumber(e, pnumber) {
             if (!/^\d+$/.test(pnumber)) {
                 e.value = /^\d+/.exec(e.value);
             }
             return false;
-        }
+        };
 
         function OnKeyDown(event) {
             if (event.keyCode === 13) {
                 event.keyCode = 9;
             }
-        }
+        };
 
         function OnKeyPress(event) {
             if ((event.keyCode < 48 || event.keyCode > 57))
                 event.returnValue = false;
-        }
+        };
     </script>
 }
 
@@ -84,7 +92,7 @@
                        type = "date",
                        @class = "form-control",
                        id = "date",
-                       placeholder = Html.DisplayNameFor( d => d.Date )
+                       placeholder = Html.DisplayNameFor( d => d.Date ),
                    }
                } )
                     @Html.ValidationMessageFor( m => m.Date, "", new { @class = "text-danger" } )

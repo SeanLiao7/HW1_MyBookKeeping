@@ -23,13 +23,14 @@ switch ( enumValue )
         throw new ArgumentOutOfRangeException( );
 }
 
-    <tr style="color:@color;">
+    <tr style="color:@color">
         <td style="vertical-align: middle">@serialNumber</td>
         <td style="vertical-align: middle">@Html.showDisplayNameByEnumValue( enumValue )</td>
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Date )</td>
         <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Amount )</td>
-        <td class="col-sm-1" style="vertical-align: middle">
+        <td class="col-sm-2 text-center">
             <a href="@Url.Action( "Edit", "Record", new { recordViewModel.RecordId } )" class="btn btn-default" type="button">編輯</a>
+            <a href="@Url.Action( "Detail", "Record", new { recordViewModel.RecordId } )" class="btn btn-default" type="button">詳細</a>
         </td>
     </tr>
 }
@@ -50,7 +51,10 @@ switch ( enumValue )
                 serialNumber++;
             }
         </table>
-        @Html.PagedListPager( Model, page => Url.Action( "RenderAjaxPartialView", new { page } ),
+        @Html.PagedListPager( Model, page => Url.Action( "RenderAjaxPartialView", new
+   {
+       page
+   } ),
             PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions { UpdateTargetId = "recordsblock" } ) )
         共 @(Model.PageCount) 頁 顯示項目：@(Model.FirstItemOnPage) ~ @(Model.LastItemOnPage), 共 @(Model.TotalItemCount) 項
     </div>

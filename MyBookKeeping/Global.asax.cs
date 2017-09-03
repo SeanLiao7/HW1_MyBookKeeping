@@ -11,8 +11,26 @@ namespace MyBookKeeping
     {
         protected void Application_Start( )
         {
-            AutoMapperConfig.configure( );
+            #region 提高效能-移除不必要的顯示引擎
 
+            ViewEngines.Engines.Clear( );
+            ViewEngines.Engines.Add( new CSharpRazorViewEngine( ) );
+
+            #endregion 提高效能-移除不必要的顯示引擎
+
+            #region 資安議題-隱藏MVC版本
+
+            MvcHandler.DisableMvcResponseHeader = true;
+
+            #endregion 資安議題-隱藏MVC版本
+
+            #region ModelBinder-字串自動Trim
+
+            ModelBinders.Binders.Add( typeof( string ), new TrimStringModelBinder( ) );
+
+            #endregion ModelBinder-字串自動Trim
+
+            AutoMapperConfig.configure( );
             AreaRegistration.RegisterAllAreas( );
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
@@ -30,6 +48,70 @@ namespace MyBookKeeping
                 string[ ] roles = ticket.UserData.Split( new char[ ] { ',' } );
                 // 指派角色到目前這個 HttpContext 的 User 物件去
                 Context.User = new GenericPrincipal( Context.User.Identity, roles );
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Class TrimStringModelBinder.
+        /// </summary>
+        /// <seealso cref="T:System.Web.Mvc.DefaultModelBinder" />
+        public class TrimStringModelBinder : DefaultModelBinder
+        {
+            public override object BindModel( ControllerContext controllerContext, ModelBindingContext bindingContext )
+            {
+                var value = base.BindModel( controllerContext, bindingContext );
+                if ( value is string )
+                    return ( value as string ).Trim( );
+                return value;
+            }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Class CSharpRazorViewEngine.
+        /// </summary>
+        /// <seealso cref="T:System.Web.Mvc.RazorViewEngine" />
+        internal class CSharpRazorViewEngine : RazorViewEngine
+        {
+            public CSharpRazorViewEngine( )
+            {
+                AreaViewLocationFormats = new[ ]
+                {
+                    "~/Areas/{2}/Views/{1}/{0}.cshtml",
+                    "~/Areas/{2}/Views/Shared/{0}.cshtml"
+                };
+                AreaMasterLocationFormats = new[ ]
+                {
+                    "~/Areas/{2}/Views/{1}/{0}.cshtml",
+                    "~/Areas/{2}/Views/Shared/{0}.cshtml"
+                };
+                AreaPartialViewLocationFormats = new[ ]
+                {
+                    "~/Areas/{2}/Views/{1}/{0}.cshtml",
+                    "~/Areas/{2}/Views/Shared/{0}.cshtml"
+                };
+
+                ViewLocationFormats = new[ ]
+                {
+                    "~/Views/{1}/{0}.cshtml",
+                    "~/Views/Shared/{0}.cshtml"
+                };
+                MasterLocationFormats = new[ ]
+                {
+                    "~/Views/{1}/{0}.cshtml",
+                    "~/Views/Shared/{0}.cshtml",
+                };
+                PartialViewLocationFormats = new[ ]
+                {
+                    "~/Views/{1}/{0}.cshtml",
+                    "~/Views/Shared/{0}.cshtml"
+                };
+
+                FileExtensions = new[ ]
+                {
+                    "cshtml"
+                };
             }
         }
     }

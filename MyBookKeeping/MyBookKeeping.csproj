@@ -127,6 +127,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -189,9 +190,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\RecordController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
+    <Compile Include="CustomResults\JsonNetResult.cs" />
+    <Compile Include="CustomResults\RssResult.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Filters\Action\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\Authorize\AjaxAuthorizeAttribute .cs" />
@@ -265,6 +268,60 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pickadate\legacy.js" />
+    <Content Include="Scripts\pickadate\picker.date.js" />
+    <Content Include="Scripts\pickadate\picker.js" />
+    <Content Include="Scripts\pickadate\picker.time.js" />
+    <Content Include="Scripts\pickadate\themes\classic.css" />
+    <Content Include="Scripts\pickadate\themes\classic.date.css" />
+    <Content Include="Scripts\pickadate\themes\classic.time.css" />
+    <Content Include="Scripts\pickadate\themes\default.css" />
+    <Content Include="Scripts\pickadate\themes\default.date.css" />
+    <Content Include="Scripts\pickadate\themes\default.time.css" />
+    <Content Include="Scripts\pickadate\themes\rtl.css" />
+    <Content Include="Scripts\pickadate\translations\ar.js" />
+    <Content Include="Scripts\pickadate\translations\bg_BG.js" />
+    <Content Include="Scripts\pickadate\translations\bs_BA.js" />
+    <Content Include="Scripts\pickadate\translations\ca_ES.js" />
+    <Content Include="Scripts\pickadate\translations\cs_CZ.js" />
+    <Content Include="Scripts\pickadate\translations\da_DK.js" />
+    <Content Include="Scripts\pickadate\translations\de_DE.js" />
+    <Content Include="Scripts\pickadate\translations\el_GR.js" />
+    <Content Include="Scripts\pickadate\translations\es_ES.js" />
+    <Content Include="Scripts\pickadate\translations\et_EE.js" />
+    <Content Include="Scripts\pickadate\translations\eu_ES.js" />
+    <Content Include="Scripts\pickadate\translations\fi_FI.js" />
+    <Content Include="Scripts\pickadate\translations\fr_FR.js" />
+    <Content Include="Scripts\pickadate\translations\gl_ES.js" />
+    <Content Include="Scripts\pickadate\translations\he_IL.js" />
+    <Content Include="Scripts\pickadate\translations\hi_IN.js" />
+    <Content Include="Scripts\pickadate\translations\hr_HR.js" />
+    <Content Include="Scripts\pickadate\translations\hu_HU.js" />
+    <Content Include="Scripts\pickadate\translations\id_ID.js" />
+    <Content Include="Scripts\pickadate\translations\is_IS.js" />
+    <Content Include="Scripts\pickadate\translations\it_IT.js" />
+    <Content Include="Scripts\pickadate\translations\ja_JP.js" />
+    <Content Include="Scripts\pickadate\translations\ko_KR.js" />
+    <Content Include="Scripts\pickadate\translations\lt_LT.js" />
+    <Content Include="Scripts\pickadate\translations\lv_LV.js" />
+    <Content Include="Scripts\pickadate\translations\nb_NO.js" />
+    <Content Include="Scripts\pickadate\translations\ne_NP.js" />
+    <Content Include="Scripts\pickadate\translations\nl_NL.js" />
+    <Content Include="Scripts\pickadate\translations\no_NO.js" />
+    <Content Include="Scripts\pickadate\translations\pl_PL.js" />
+    <Content Include="Scripts\pickadate\translations\pt_BR.js" />
+    <Content Include="Scripts\pickadate\translations\pt_PT.js" />
+    <Content Include="Scripts\pickadate\translations\ro_RO.js" />
+    <Content Include="Scripts\pickadate\translations\ru_RU.js" />
+    <Content Include="Scripts\pickadate\translations\sk_SK.js" />
+    <Content Include="Scripts\pickadate\translations\sl_SI.js" />
+    <Content Include="Scripts\pickadate\translations\sv_SE.js" />
+    <Content Include="Scripts\pickadate\translations\th_TH.js" />
+    <Content Include="Scripts\pickadate\translations\tr_TR.js" />
+    <Content Include="Scripts\pickadate\translations\uk_UA.js" />
+    <Content Include="Scripts\pickadate\translations\vi_VN.js" />
+    <Content Include="Scripts\pickadate\translations\zh_CN.js" />
+    <Content Include="Scripts\pickadate\translations\zh_TW.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -284,14 +341,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Record\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMoney.cshtml" />
     <Content Include="Views\Record\_IndexPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LogInPartial.cshtml" />
+    <Content Include="Views\Record\Detail.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -308,6 +365,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Feed\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
