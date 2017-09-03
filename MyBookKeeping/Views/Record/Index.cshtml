@@ -85,16 +85,7 @@
             <div class="form-group">
                 @Html.LabelFor( m => m.Date, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">
-                    @Html.EditorFor( m => m.Date, new
-               {
-                   htmlAttributes = new
-                   {
-                       type = "date",
-                       @class = "form-control",
-                       id = "date",
-                       placeholder = Html.DisplayNameFor( d => d.Date ),
-                   }
-               } )
+                    @Html.EditorFor( m => m.Date )
                     @Html.ValidationMessageFor( m => m.Date, "", new { @class = "text-danger" } )
                 </div>
             </div>
