@@ -1,0 +1,34 @@
+﻿@model IPagedList<RecordViewModel>
+
+@{
+    ViewBag.Title = "SearchByUrl";
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jQuery.Ajax.Authorize.js"></script>
+}
+
+<div class="container body-content">
+    <dl class="dl-horizontal well">
+        <dt>年份</dt>
+        <dd>@ViewData[ "Year" ].ToString( )</dd>
+        <dt>月份</dt>
+        <dd> @ViewData[ "Month" ].ToString( )</dd>
+    </dl>
+</div>
+
+<div class="container body-content">
+    <div id="recordsblock">
+        @Html.Partial( "_IndexPartial", Model )
+    </div>
+    <hr />
+    <footer>
+        <p>
+            &copy; 2017 - <a href="#">SkillTree</a>
+        </p>
+    </footer>
+</div>

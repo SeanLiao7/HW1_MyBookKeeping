@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
+using MyBookKeeping.CustomResults;
 using MyBookKeeping.Filters;
+using MyBookKeeping.Models;
 using MyBookKeeping.Models.ViewModels;
 using MyBookKeeping.Repositories;
 using MyBookKeeping.Service;
+using Newtonsoft.Json;
 using PagedList;
 
 namespace MyBookKeeping.Controllers
@@ -22,11 +25,16 @@ namespace MyBookKeeping.Controllers
 
         [AjaxOnly]
         [AllowAnonymous]
-        public ActionResult AjaxPosts( SearchViewModel input )
+        public ActionResult AjaxPosts( SearchModel input )
         {
-            const int page = 1;
-            var pagedList = getIPagedList( page, input );
-            return PartialView( "_IndexPartial", pagedList );
+            if ( ModelState.IsValid )
+            {
+                const int page = 1;
+                var pagedList = getIPagedList( page, input );
+                return PartialView( "_IndexPartial", pagedList );
+            }
+
+            return JsonNotFoundResult( );
         }
 
         [AllowAnonymous]
@@ -43,32 +51,41 @@ namespace MyBookKeeping.Controllers
 
         [AjaxOnly]
         [AllowAnonymous]
-        public ActionResult RenderAjaxPartialView( int? page, int year, int month )
+        public ActionResult RenderAjaxPartialView( int? page, int? year, int? month )
         {
+            if ( year == null || month == null )
+                return JsonNotFoundResult( );
+
             page = page ?? 1;
-            var pagedList = getIPagedList( page.Value, new SearchViewModel { Year = year, Month = month } );
+            var pagedList = getIPagedList( page.Value, new SearchModel { Year = year.Value, Month = month.Value } );
             return PartialView( "_IndexPartial", pagedList );
         }
 
-        [ChildActionOnly]
+        [Route( "skilltree/{year:int:min( 1 )}/{month:int:min(1):max(12)}" )]
         [AllowAnonymous]
-        public ActionResult RenderParialView( )
+        public ActionResult SearchByUrl( int year, int month )
         {
-            const int firstPage = 1;
-            var pagedList = getIPagedList( firstPage );
-            return PartialView( "_IndexPartial", pagedList );
+            const int page = 1;
+            var pagedList = getIPagedList( page, new SearchModel { Year = year, Month = month } );
+
+            if ( pagedList.Count == 0 )
+                return JsonNotFoundResult( );
+
+            ViewData[ "Year" ] = year;
+            ViewData[ "Month" ] = month;
+
+            return View( pagedList );
         }
 
-        private IPagedList<RecordViewModel> getIPagedList( int page )
+        private static JsonNetResult JsonNotFoundResult( )
         {
-            return _recordService.getRecords( )
-                .OrderBy( x => x.Dateee )
-                .ThenBy( x => x.Id )
-                .ProjectTo<RecordViewModel>( )
-                .ToPagedList( page, _pageSize );
+            var jsonNetResult = new JsonNetResult( );
+            jsonNetResult.Formatting = Formatting.Indented;
+            jsonNetResult.Data = "找不到資料 !!";
+            return jsonNetResult;
         }
 
-        private IPagedList<RecordViewModel> getIPagedList( int page, SearchViewModel input )
+        private IPagedList<RecordViewModel> getIPagedList( int page, SearchModel input )
         {
             return _recordService.getRecords( )
                 .Where( x => x.Dateee.Year == input.Year && x.Dateee.Month == input.Month )

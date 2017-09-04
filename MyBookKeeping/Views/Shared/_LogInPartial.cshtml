@@ -1,7 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-@using MyBookKeeping.Helper
-
-@if ( Request.IsAuthenticated )
+﻿@if ( Request.IsAuthenticated )
 {
     using ( Html.BeginForm( "LogOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" } ) )
     {

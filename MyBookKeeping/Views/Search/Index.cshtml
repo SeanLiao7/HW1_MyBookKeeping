@@ -1,4 +1,4 @@
-﻿@model MyBookKeeping.Models.ViewModels.SearchViewModel
+﻿@model SearchModel
 
 @{
     ViewBag.Title = "Index";
@@ -9,10 +9,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/jQuery.Validate.Customplugin.js"></script>
     <script src="~/Scripts/jQuery.Ajax.Authorize.js"></script>
-    <script src="~/Scripts/pickadate/picker.js"></script>
-    <script src="~/Scripts/pickadate/picker.date.js"></script>
 }
 
 <div class="container body-content">
@@ -23,14 +20,14 @@
             <div class="form-group">
                 @Html.LabelFor( m => m.Year, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">
-                    @Html.DropDownList( "Year", ( IEnumerable<SelectListItem> ) ViewData[ "year" ], new { @class = "form-control" } )
+                    @Html.DropDownListFor( m => m.Year, ( IEnumerable<SelectListItem> ) ViewData[ "year" ], "請選擇年份", new { @class = "form-control" } )
                     @Html.ValidationMessageFor( m => m.Year, "", new { @class = "text-danger" } )
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor( m => m.Month, new { @class = "col-sm-2 control-label" } )
                 <div class="col-sm-10">
-                    @Html.DropDownList( "Month", ( IEnumerable<SelectListItem> ) ViewData[ "month" ], new { @class = "form-control" } )
+                    @Html.DropDownListFor( m => m.Month, ( IEnumerable<SelectListItem> ) ViewData[ "month" ], "請選擇月份", new { @class = "form-control" } )
                     @Html.ValidationMessageFor( m => m.Month, "", new { @class = "text-danger" } )
                 </div>
             </div>
@@ -42,7 +39,6 @@
         }
     </div>
     <div id="recordsblock">
-        @Html.Action( "RenderParialView", "Search" )
     </div>
     <hr />
     <footer>
