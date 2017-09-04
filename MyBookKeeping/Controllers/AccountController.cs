@@ -11,7 +11,7 @@ namespace MyBookKeeping.Controllers
         /// <summary>
         /// 設定要存在 FormsAuthenticationTicket 中的資料，這裡用來儲存角色資訊
         /// </summary>
-        private string userData = "";
+        private string _userData = "";
 
         // GET: Login
         public ActionResult Login( )
@@ -39,7 +39,7 @@ namespace MyBookKeeping.Controllers
                     DateTime.Now,
                     DateTime.Now.AddMinutes( 30 ),
                     false,//將管理者登入的 Cookie 設定成 Session Cookie
-                    userData,//userdata看你想存放啥
+                    _userData,//userdata看你想存放啥
                     FormsAuthentication.FormsCookiePath );
 
                 string encTicket = FormsAuthentication.Encrypt( ticket );
@@ -77,8 +77,8 @@ namespace MyBookKeeping.Controllers
             if ( loginModel == null || loginModel.Account != "123" || loginModel.PassWord != "123" )
                 return false;
 
-            // 授權：設定角色到 userData
-            userData = "admin";
+            // 授權：設定角色到 _userData
+            _userData = "admin";
 
             return true;
         }

@@ -1,0 +1,50 @@
+﻿@model IPagedList<RecordViewModel>
+
+@{
+    var serialNumber = 1;
+}
+
+@helper tableRawData( int serialNumber, RecordViewModel recordViewModel )
+{
+string color;
+var enumValue = recordViewModel.Category;
+switch ( enumValue )
+{
+    case CategoryEnum.EXPEND:
+        color = "red";
+        break;
+    case CategoryEnum.INCOME:
+        color = "blue";
+        break;
+    default:
+        throw new ArgumentOutOfRangeException( );
+}
+
+    <tr style="color:@color">
+        <td style="vertical-align: middle">@serialNumber</td>
+        <td style="vertical-align: middle">@Html.showDisplayNameByEnumValue( enumValue )</td>
+        <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Date )</td>
+        <td style="vertical-align: middle">@Html.DisplayFor( x => recordViewModel.Amount )</td>
+    </tr>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>#</th>
+                <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Category )</th>
+                <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Date )</th>
+                <th>@Html.DisplayNameFor( m => m.FirstOrDefault( ).Amount )</th>
+            </tr>
+            @foreach ( var item in Model )
+            {
+                @tableRawData( serialNumber, item )
+                serialNumber++;
+            }
+        </table>
+        @Html.PagedListPager( Model, page => Url.Action( "RenderAjaxPartialView", new { page, year = Model?.FirstOrDefault( )?.Date.Value.Year, month = Model?.FirstOrDefault( )?.Date.Value.Month } ),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions { UpdateTargetId = "recordsblock" } ) )
+        共 @(Model.PageCount) 頁 顯示項目：@(Model.FirstItemOnPage) ~ @(Model.LastItemOnPage), 共 @(Model.TotalItemCount) 項
+    </div>
+</div>

@@ -31,6 +31,8 @@ namespace MyBookKeeping.Areas.Admin.Controllers
                 return RedirectToAction( "Index", "Record", new { area = "" } );
             }
 
+            ViewBag.RecordId = recordId;
+
             return View( accountRecord );
         }
 

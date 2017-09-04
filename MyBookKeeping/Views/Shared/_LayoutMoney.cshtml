@@ -26,7 +26,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href=@Url.Action( "Index", "Record", new { area = "" } )>首頁</a></li>
-                    <li><a href="#">關於</a></li>
+                    <li><a href=@Url.Action( "Index", "Search", new {area = ""})>搜尋</a></li>
                     <li><a href="#">連絡方式</a></li>
                 </ul>
                 @Html.Partial( "_LogInPartial" )
