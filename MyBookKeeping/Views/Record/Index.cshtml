@@ -17,7 +17,9 @@
         $(function () {
             $("[data-datepicker]").pickadate({
                 max: true,
-                format: "你選擇 : yyyy-mm-dd"
+                format: "你選擇 : yyyy-mm-dd",
+                formatSubmit: "yyyy-mm-dd",
+                hiddenName: true
             });
         });
 
