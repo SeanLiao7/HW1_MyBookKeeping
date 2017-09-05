@@ -212,8 +212,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\HelperExtensions.cs" />
+    <Compile Include="Migrations\201709050610368_InitialCreate.cs" />
+    <Compile Include="Migrations\201709050610368_InitialCreate.Designer.cs">
+      <DependentUpon>201709050610368_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709050614119_User.cs" />
+    <Compile Include="Migrations\201709050614119_User.Designer.cs">
+      <DependentUpon>201709050614119_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709050616326_RoleId.cs" />
+    <Compile Include="Migrations\201709050616326_RoleId.Designer.cs">
+      <DependentUpon>201709050616326_RoleId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBook.cs" />
     <Compile Include="Models\CategoryEnum.cs" />
+    <Compile Include="Models\SystemRole.cs" />
+    <Compile Include="Models\SystemUser.cs" />
     <Compile Include="Models\DataPostModels\AccountRecord.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MetaData\AccountBookMetaData.cs" />
@@ -374,6 +389,17 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Feed\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709050610368_InitialCreate.resx">
+      <DependentUpon>201709050610368_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709050614119_User.resx">
+      <DependentUpon>201709050614119_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709050616326_RoleId.resx">
+      <DependentUpon>201709050616326_RoleId.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
