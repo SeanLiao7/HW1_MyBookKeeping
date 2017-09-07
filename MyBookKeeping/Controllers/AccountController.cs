@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -76,7 +77,10 @@ namespace MyBookKeeping.Controllers
         private bool validateLogin( LoginModel loginModel )
         {
             // 驗證帳號是否存在
-            var user = _accountService.getUsers( ).SingleOrDefault( x => x.Account == loginModel.Account );
+            var user = _accountService
+                .getUsers( )
+                .Include( "SystemRoles" )
+                .SingleOrDefault( x => x.Account == loginModel.Account );
             if ( user == null )
                 return false;
 
@@ -86,7 +90,7 @@ namespace MyBookKeeping.Controllers
                 return false;
 
             // 授權：設定角色到 _userData
-            _userData = string.Join( ",", user.SystemRoles.Select( x => x.Name ).ToArray( ) );
+            _userData = string.Join( ",", user.SystemRoles.Select( x => x.Name ) );
 
             return true;
         }

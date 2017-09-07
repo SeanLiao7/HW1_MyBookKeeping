@@ -19,7 +19,6 @@ namespace MyBookKeeping.Controllers
             _recordService = new RecordService( unitOfWork );
         }
 
-        // GET: Orders
         public ActionResult Index( )
         {
             var feed = this.getFeedData( );
