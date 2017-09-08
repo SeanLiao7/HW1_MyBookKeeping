@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace MyBookKeeping.Models
 {
@@ -31,6 +29,7 @@ namespace MyBookKeeping.Models
         [StringLength( 200 )]
         [MinLength( 2, ErrorMessage = "長度不可小於 2" )]
         [MaxLength( 200, ErrorMessage = "長度不可超過 200" )]
+        [DataType( DataType.EmailAddress )]
         public string Email { get; set; }
 
         [DisplayName( "是否使用" )]
@@ -51,6 +50,7 @@ namespace MyBookKeeping.Models
         [MaxLength( 200, ErrorMessage = "長度不可超過 200" )]
         public string Password { get; set; }
 
+        [DisplayName( "系統角色" )]
         public ICollection<SystemRole> SystemRoles { get; set; }
 
         [DisplayName( "更新者" )]

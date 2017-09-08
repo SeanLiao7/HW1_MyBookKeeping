@@ -15,9 +15,11 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        @*<li>@Html.ActionLink( "Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" } )</li>*@
         <li>
-            <a href=@Url.Action("Login","Account") id="LoginLink">登入</a>
+            <a href="@Url.Action( "Register", "Account" )" id="registerlink">註冊</a>
+        </li>
+        <li>
+            <a href=@Url.Action( "Login", "Account" ) id="loginlink">登入</a>
         </li>
     </ul>
 }

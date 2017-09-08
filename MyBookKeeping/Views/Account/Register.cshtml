@@ -1,0 +1,119 @@
+﻿@model SystemUser
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="container body-content">
+    <div class="well form-horizontal" id="form_block">
+        @using ( Html.BeginForm( "Register", "Account", FormMethod.Post ) )
+        {
+            @Html.AntiForgeryToken( )
+            @Html.ValidationSummary( false, "", new { @class = "text-danger" } )
+            <div class="form-group">
+                @Html.LabelFor( m => m.Account, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.Account,
+                   new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "form-control",
+                           id = "account"
+                       }
+                   } )
+                    @Html.ValidationMessageFor( m => m.Account, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor( m => m.Password, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.Password, new
+               {
+                   htmlAttributes = new
+                   {
+                       type = "password",
+                       @class = "form-control",
+                       id = "password",
+                       placeholder = Html.DisplayNameFor( d => d.Password ),
+                   }
+               } )
+                    @Html.ValidationMessageFor( m => m.Password, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor( m => m.Name, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.Name, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control",
+                       id = "name",
+                       placeholder = Html.DisplayNameFor( d => d.Name ),
+                   }
+               } )
+                    @Html.ValidationMessageFor( m => m.Name, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor( m => m.Email, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.Email, new
+               {
+                   htmlAttributes = new
+                   {
+                       type = "email",
+                       @class = "form-control",
+                       id = "email",
+                       placeholder = Html.DisplayNameFor( d => d.Email ),
+                   }
+               } )
+                    @Html.ValidationMessageFor( m => m.Email, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor( m => m.SystemRoles, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @foreach ( var item in ( List<SelectListItem> ) ViewData[ "roles" ] )
+                    {
+                        <div class="checkbox col-sm-10">
+                            @Html.CheckBox( "roles", false, new
+                       {
+                           value = item.Value,
+                           @class = "checkbox form-control"
+                       } )
+                            @item.Text
+                        </div>
+                    }
+                    @Html.ValidationMessageFor( m => m.SystemRoles, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor( m => m.IsEnable, new { @class = "col-sm-2 control-label" } )
+                <div class="col-sm-10">
+                    @Html.EditorFor( m => m.IsEnable, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "checkbox form-control",
+                       id = "isenable",
+                       placeholder = Html.DisplayNameFor( d => d.IsEnable ),
+                   }
+               } )
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <button class="btn btn-default">送出</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

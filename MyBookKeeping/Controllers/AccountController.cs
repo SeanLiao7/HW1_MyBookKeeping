@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -67,6 +68,70 @@ namespace MyBookKeeping.Controllers
             Session.RemoveAll( );
 
             return RedirectToAction( "Index", "Record" );
+        }
+
+        public ActionResult Register( )
+        {
+            ViewData[ "roles" ] = getRolesSelectedItems( );
+            return View( );
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Register( [Bind( Exclude = "UserId, CreateBy, UpdateBy, UpdateOn" )] SystemUser user, string[ ] roles )
+        {
+            if ( ModelState.IsValid )
+            {
+                updateUserAndRoleRelation( user, roles );
+                user.CreateBy = Guid.NewGuid( );
+                user.Password = Crypto.HashPassword( user.Password );
+                _accountService.createNewUser( user );
+                _accountService.save( );
+                return RedirectToAction( "Index", "Record" );
+            }
+
+            ViewData[ "roles" ] = getRolesSelectedItems( );
+            return View( );
+        }
+
+        private List<SelectListItem> getRolesSelectedItems( )
+        {
+            var roles = _accountService
+                .getRoles( )
+                .OrderBy( x => x.Sort )
+                .ToList( );
+
+            var items = new List<SelectListItem>( );
+            foreach ( var role in roles )
+            {
+                items.Add( new SelectListItem
+                {
+                    Text = role.Name,
+                    Value = role.RoleId.ToString( ),
+                    Selected = false
+                } );
+            }
+
+            return items;
+        }
+
+        private void updateUserAndRoleRelation( SystemUser user, string[ ] selectedRoleIds )
+        {
+            if ( user.SystemRoles == null )
+                user.SystemRoles = new List<SystemRole>( );
+
+            if ( selectedRoleIds != null )
+            {
+                var roles = _accountService.getRoles( ).ToList( );
+
+                foreach ( var role in roles )
+                {
+                    if ( selectedRoleIds.Contains( role.RoleId.ToString( ) ) )
+                    {
+                        user.SystemRoles.Add( role );
+                    }
+                }
+            }
         }
 
         /// <summary>

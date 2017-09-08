@@ -7,11 +7,13 @@ namespace MyBookKeeping.Service
 {
     public class AccountService
     {
-        private readonly IRepository<SystemUser> _accountRepository;
+        private readonly IRepository<SystemRole> _roleRepository;
+        private readonly IRepository<SystemUser> _userRepository;
 
         public AccountService( IUnitOfWork unitOfWork )
         {
-            _accountRepository = new Repository<SystemUser>( unitOfWork );
+            _userRepository = new Repository<SystemUser>( unitOfWork );
+            _roleRepository = new Repository<SystemRole>( unitOfWork );
         }
 
         private AccountService( )
@@ -20,27 +22,32 @@ namespace MyBookKeeping.Service
 
         public void createNewUser( SystemUser user )
         {
-            _accountRepository.Create( user );
+            _userRepository.Create( user );
+        }
+
+        public IQueryable<SystemRole> getRoles( )
+        {
+            return _roleRepository.LookupAll( );
         }
 
         public SystemUser getUserById( Guid userId )
         {
-            return _accountRepository.GetSingle( x => x.UserId == userId );
+            return _userRepository.GetSingle( x => x.UserId == userId );
         }
 
         public IQueryable<SystemUser> getUsers( )
         {
-            return _accountRepository.LookupAll( );
+            return _userRepository.LookupAll( );
         }
 
         public void save( )
         {
-            _accountRepository.Commit( );
+            _userRepository.Commit( );
         }
 
         public void updateUser( SystemUser user )
         {
-            _accountRepository.Update( user );
+            _userRepository.Update( user );
         }
     }
 }
