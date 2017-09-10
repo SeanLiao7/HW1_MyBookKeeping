@@ -23,29 +23,18 @@
             });
         });
 
+        $(function () {
+            $("[data-onkeypress]").keypress(function (event) {
+                if ((event.keyCode < 48 || event.keyCode > 57))
+                    event.preventDefault();
+            });
+        });
+
         jQuery.extend(jQuery.validator.messages,
             {
                 max: jQuery.validator.format("輸入值不得大於 {0}."),
                 min: jQuery.validator.format("輸入值不得小於 {0}.")
             });
-
-        function ValidateNumber(e, pnumber) {
-            if (!/^\d+$/.test(pnumber)) {
-                e.value = /^\d+/.exec(e.value);
-            }
-            return false;
-        };
-
-        function OnKeyDown(event) {
-            if (event.keyCode === 13) {
-                event.keyCode = 9;
-            }
-        };
-
-        function OnKeyPress(event) {
-            if ((event.keyCode < 48 || event.keyCode > 57))
-                event.returnValue = false;
-        };
     </script>
 }
 
@@ -76,9 +65,7 @@
                        style = "ime-mode:disabled",
                        min = 1,
                        max = int.MaxValue,
-                       onkeyup = "return ValidateNumber(this,value)",
-                       onkeydown = "return OnKeyDown(event)",
-                       onkeypress = "return OnKeyPress(event)"
+                       data_onkeypress = "",
                    }
                } )
                     @Html.ValidationMessageFor( m => m.Amount, "", new { @class = "text-danger" } )
